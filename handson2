@@ -1,0 +1,271 @@
+
+C:\Users\DSAMANTH>mongosh
+Current Mongosh Log ID: 63771f07dd8ddfeb2bf806ed
+Connecting to:          mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+1.1.9
+Using MongoDB:          5.0.6
+Using Mongosh:          1.1.9
+
+For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting:
+   2022-11-18T11:28:17.802+05:30: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+   2022-11-18T11:28:17.803+05:30: This server is bound to localhost. Remote systems will be unable to connect to this server. Start the server with --bind_ip <address> to specify which IP addresses it should serve responses from, or with --bind_ip_all to bind to all interfaces. If this behavior is desired, start the server with --bind_ip 127.0.0.1 to disable this warning
+------
+
+Warning: Found ~/.mongorc.js, but not ~/.mongoshrc.js. ~/.mongorc.js will not be loaded.
+  You may want to copy or rename ~/.mongorc.js to ~/.mongoshrc.js.
+test> db use apple
+Uncaught:
+SyntaxError: Missing semicolon. (1:2)
+
+> 1 | db use apple
+    |   ^
+  2 |
+
+test> db use apple()
+Uncaught:
+SyntaxError: Missing semicolon. (1:2)
+
+> 1 | db use apple()
+    |   ^
+  2 |
+
+test> db use:ASAP
+Uncaught:
+SyntaxError: Missing semicolon. (1:2)
+
+> 1 | db use:ASAP
+    |   ^
+  2 |
+
+test> db. show databases()
+Uncaught:
+SyntaxError: Missing semicolon. (1:8)
+
+> 1 | db. show databases()
+    |         ^
+  2 |
+
+test> show dbs
+BookStore  8.19 kB
+admin        41 kB
+cart        123 kB
+config      111 kB
+full         41 kB
+local      73.7 kB
+mangod     8.19 kB
+node       73.7 kB
+phone      8.19 kB
+test       73.7 kB
+users        41 kB
+test> use phone
+switched to db phone
+phone> db.dropDatabase()
+{ ok: 1, dropped: 'phone' }
+phone> use full
+switched to db full
+full> db.posts.insertOne({
+... name:"Samanth",
+... phone no: 948449499,
+Browserslist: caniuse-lite is outdated. Please run:
+  npx browserslist@latest --update-db
+  Why you should do it regularly: https://github.com/browserslist/browserslist#browsers-data-updating
+Uncaught:
+SyntaxError: Unexpected token, expected "," (3:6)
+
+  1 | db.posts.insertOne({
+  2 | name:"Samanth",
+> 3 | phone no: 948449499,
+    |       ^
+  4 |
+
+full> db.posts.insertOne({ name:"Samanth", phoneno: 94844949,})
+{
+  acknowledged: true,
+  insertedId: ObjectId("637722e2ff7e2921cf026640")
+}
+full> db.posts.insertOne({ name:"Nikhil", phoneno: 948434349,})
+{
+  acknowledged: true,
+  insertedId: ObjectId("63772306ff7e2921cf026641")
+}
+full> db.posts.insertOne({ name:"Aditya", phoneno: 94844434349,})
+{
+  acknowledged: true,
+  insertedId: ObjectId("6377231bff7e2921cf026642")
+}
+full> db.posts.insertOne({ name:"Asir", phoneno: 94844434449,})
+{
+  acknowledged: true,
+  insertedId: ObjectId("6377232fff7e2921cf026643")
+}
+full> db.posts.insertOne({ name:"lohitha", phoneno: 94844434449,})
+{
+  acknowledged: true,
+  insertedId: ObjectId("63772345ff7e2921cf026644")
+}
+full> db.full.find()
+
+full> db.full.find().pretty()
+
+full> db.Full.find().pretty()
+
+full> db.full.posts.find().Pretty()
+TypeError: db.full.posts.find().Pretty is not a function
+full> db.full.posts.find().Pretty()
+TypeError: db.full.posts.find().Pretty is not a function
+full> show collections
+ASAP
+posts
+full> db.posts.find().pretty()
+[
+  {
+    _id: ObjectId("637722e2ff7e2921cf026640"),
+    name: 'Samanth',
+    phoneno: 94844949
+  },
+  {
+    _id: ObjectId("63772306ff7e2921cf026641"),
+    name: 'Nikhil',
+    phoneno: 948434349
+  },
+  {
+    _id: ObjectId("6377231bff7e2921cf026642"),
+    name: 'Aditya',
+    phoneno: 94844434349
+  },
+  {
+    _id: ObjectId("6377232fff7e2921cf026643"),
+    name: 'Asir',
+    phoneno: 94844434449
+  },
+  {
+    _id: ObjectId("63772345ff7e2921cf026644"),
+    name: 'lohitha',
+    phoneno: 94844434449
+  }
+]
+full> db.posts.deleteOne({ name: "Samanth"})
+{ acknowledged: true, deletedCount: 1 }
+full> db.posts.find().pretty()
+[
+  {
+    _id: ObjectId("63772306ff7e2921cf026641"),
+    name: 'Nikhil',
+    phoneno: 948434349
+  },
+  {
+    _id: ObjectId("6377231bff7e2921cf026642"),
+    name: 'Aditya',
+    phoneno: 94844434349
+  },
+  {
+    _id: ObjectId("6377232fff7e2921cf026643"),
+    name: 'Asir',
+    phoneno: 94844434449
+  },
+  {
+    _id: ObjectId("63772345ff7e2921cf026644"),
+    name: 'lohitha',
+    phoneno: 94844434449
+  }
+]
+full>
+{
+  _id: ObjectId("63772306ff7e2921cf026641"),
+  name: 'Nikhil',
+  phoneno: 948434349
+}
+full> db.posts.UpdateOne({ full: "Post Title 1" }, { $set: { phoneno :111 } } )
+TypeError: db.posts.UpdateOne is not a function
+full> db.posts.updateOne({ full: "Post Title 1" }, { $set: { phoneno :111 } } )
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 0,
+  modifiedCount: 0,
+  upsertedCount: 0
+}
+full> show collections
+ASAP
+posts
+full> db.posts.find().pretty()
+[
+  {
+    _id: ObjectId("63772306ff7e2921cf026641"),
+    name: 'Nikhil',
+    phoneno: 948434349
+  },
+  {
+    _id: ObjectId("6377231bff7e2921cf026642"),
+    name: 'Aditya',
+    phoneno: 94844434349
+  },
+  {
+    _id: ObjectId("6377232fff7e2921cf026643"),
+    name: 'Asir',
+    phoneno: 94844434449
+  },
+  {
+    _id: ObjectId("63772345ff7e2921cf026644"),
+    name: 'lohitha',
+    phoneno: 94844434449
+  }
+]
+full> db.posts.updateOne({ name: "Nikhil" }, { $set: { name :nik } } )
+ReferenceError: nik is not defined
+full> db.posts.updateOne({ name: "Nikhil" }, { $set: { name :"nik" } } )
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+full> db.posts.find().pretty()
+[
+  {
+    _id: ObjectId("63772306ff7e2921cf026641"),
+    name: 'nik',
+    phoneno: 948434349
+  },
+  {
+    _id: ObjectId("6377231bff7e2921cf026642"),
+    name: 'Aditya',
+    phoneno: 94844434349
+  },
+  {
+    _id: ObjectId("6377232fff7e2921cf026643"),
+    name: 'Asir',
+    phoneno: 94844434449
+  },
+  {
+    _id: ObjectId("63772345ff7e2921cf026644"),
+    name: 'lohitha',
+    phoneno: 94844434449
+  }
+]
+full> db.posts.find()
+[
+  {
+    _id: ObjectId("63772306ff7e2921cf026641"),
+    name: 'nik',
+    phoneno: 948434349
+  },
+  {
+    _id: ObjectId("6377231bff7e2921cf026642"),
+    name: 'Aditya',
+    phoneno: 94844434349
+  },
+  {
+    _id: ObjectId("6377232fff7e2921cf026643"),
+    name: 'Asir',
+    phoneno: 94844434449
+  },
+  {
+    _id: ObjectId("63772345ff7e2921cf026644"),
+    name: 'lohitha',
+    phoneno: 94844434449
+  }
+]
