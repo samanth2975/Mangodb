@@ -1,0 +1,248 @@
+
+C:\Users\DSAMANTH>mongosh
+Current Mongosh Log ID: 63775839e5e64c99fe36ec9c
+Connecting to:          mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+1.1.9
+Using MongoDB:          5.0.6
+Using Mongosh:          1.1.9
+
+For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting:
+   2022-11-18T15:32:16.816+05:30: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+   2022-11-18T15:32:16.817+05:30: This server is bound to localhost. Remote systems will be unable to connect to this server. Start the server with --bind_ip <address> to specify which IP addresses it should serve responses from, or with --bind_ip_all to bind to all interfaces. If this behavior is desired, start the server with --bind_ip 127.0.0.1 to disable this warning
+------
+
+Warning: Found ~/.mongorc.js, but not ~/.mongoshrc.js. ~/.mongorc.js will not be loaded.
+  You may want to copy or rename ~/.mongorc.js to ~/.mongoshrc.js.
+test> show dbs
+BookStore  8.19 kB
+admin        41 kB
+cart        123 kB
+config     36.9 kB
+full        115 kB
+local      73.7 kB
+mangod     8.19 kB
+node       73.7 kB
+test       73.7 kB
+users        41 kB
+test> full
+ReferenceError: full is not defined
+test> use full
+switched to db full
+full> db.posts.insertOne ( { name:"Kavya", Phone no : 94838382,})
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:43)
+
+> 1 | db.posts.insertOne ( { name:"Kavya", Phone no : 94838382,})
+    |                                            ^
+  2 |
+
+full> db.posts.insertOne ( { name: "Kavya", Phoneno : 94838382,} )
+{
+  acknowledged: true,
+  insertedId: ObjectId("6377590d474fb3361363ad27")
+}
+full> db.posts.insertOne ( { name: "nani", Phoneno : 94343538382,} )
+{
+  acknowledged: true,
+  insertedId: ObjectId("63775927474fb3361363ad28")
+}
+full> db.posts.insertOne ( { name: "karthik", Phoneno : 943435234382,} )
+{
+  acknowledged: true,
+  insertedId: ObjectId("6377593b474fb3361363ad29")
+}
+full> show collections
+ASAP
+posts
+full> db.posts.find().pretty()
+[
+  {
+    _id: ObjectId("63772306ff7e2921cf026641"),
+    name: 'nik',
+    phoneno: 948434349
+  },
+  {
+    _id: ObjectId("6377231bff7e2921cf026642"),
+    name: 'Aditya',
+    phoneno: 94844434349
+  },
+  {
+    _id: ObjectId("6377232fff7e2921cf026643"),
+    name: 'Asir',
+    phoneno: 94844434449
+  },
+  {
+    _id: ObjectId("63772345ff7e2921cf026644"),
+    name: 'lohitha',
+    phoneno: 94844434449
+  },
+  {
+    _id: ObjectId("6377590d474fb3361363ad27"),
+    name: 'Kavya',
+    Phoneno: 94838382
+  },
+  {
+    _id: ObjectId("63775927474fb3361363ad28"),
+    name: 'nani',
+    Phoneno: 94343538382
+  },
+  {
+    _id: ObjectId("6377593b474fb3361363ad29"),
+    name: 'karthik',
+    Phoneno: 943435234382
+  }
+]
+full> db.posts.deleteOne( { name : "nani" } )
+{ acknowledged: true, deletedCount: 1 }
+full> db.posts.find().pretty()
+[
+  {
+    _id: ObjectId("63772306ff7e2921cf026641"),
+    name: 'nik',
+    phoneno: 948434349
+  },
+  {
+    _id: ObjectId("6377231bff7e2921cf026642"),
+    name: 'Aditya',
+    phoneno: 94844434349
+  },
+  {
+    _id: ObjectId("6377232fff7e2921cf026643"),
+    name: 'Asir',
+    phoneno: 94844434449
+  },
+  {
+    _id: ObjectId("63772345ff7e2921cf026644"),
+    name: 'lohitha',
+    phoneno: 94844434449
+  },
+  {
+    _id: ObjectId("6377590d474fb3361363ad27"),
+    name: 'Kavya',
+    Phoneno: 94838382
+  },
+  {
+    _id: ObjectId("6377593b474fb3361363ad29"),
+    name: 'karthik',
+    Phoneno: 943435234382
+  }
+]
+full> db.posts.deleteOne( { phoneno : "94838382" } )
+{ acknowledged: true, deletedCount: 0 }
+full> db.posts.find().pretty()
+[
+  {
+    _id: ObjectId("63772306ff7e2921cf026641"),
+    name: 'nik',
+    phoneno: 948434349
+  },
+  {
+    _id: ObjectId("6377231bff7e2921cf026642"),
+    name: 'Aditya',
+    phoneno: 94844434349
+  },
+  {
+    _id: ObjectId("6377232fff7e2921cf026643"),
+    name: 'Asir',
+    phoneno: 94844434449
+  },
+  {
+    _id: ObjectId("63772345ff7e2921cf026644"),
+    name: 'lohitha',
+    phoneno: 94844434449
+  },
+  {
+    _id: ObjectId("6377590d474fb3361363ad27"),
+    name: 'Kavya',
+    Phoneno: 94838382
+  },
+  {
+    _id: ObjectId("6377593b474fb3361363ad29"),
+    name: 'karthik',
+    Phoneno: 943435234382
+  }
+]
+full> db.posts.updateOne( { name : "lohitha" } , { $set : { name : "lohi" } } )
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+full> db.posts.find().pretty()
+[
+  {
+    _id: ObjectId("63772306ff7e2921cf026641"),
+    name: 'nik',
+    phoneno: 948434349
+  },
+  {
+    _id: ObjectId("6377231bff7e2921cf026642"),
+    name: 'Aditya',
+    phoneno: 94844434349
+  },
+  {
+    _id: ObjectId("6377232fff7e2921cf026643"),
+    name: 'Asir',
+    phoneno: 94844434449
+  },
+  {
+    _id: ObjectId("63772345ff7e2921cf026644"),
+    name: 'lohi',
+    phoneno: 94844434449
+  },
+  {
+    _id: ObjectId("6377590d474fb3361363ad27"),
+    name: 'Kavya',
+    Phoneno: 94838382
+  },
+  {
+    _id: ObjectId("6377593b474fb3361363ad29"),
+    name: 'karthik',
+    Phoneno: 943435234382
+  }
+]
+full> db.posts.updateOne( { phoneno :"98844434449"} , { $set : { phoneno : "23232323" } } )
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 0,
+  modifiedCount: 0,
+  upsertedCount: 0
+}
+full> db.posts.find().pretty()
+[
+  {
+    _id: ObjectId("63772306ff7e2921cf026641"),
+    name: 'nik',
+    phoneno: 948434349
+  },
+  {
+    _id: ObjectId("6377231bff7e2921cf026642"),
+    name: 'Aditya',
+    phoneno: 94844434349
+  },
+  {
+    _id: ObjectId("6377232fff7e2921cf026643"),
+    name: 'Asir',
+    phoneno: 94844434449
+  },
+  {
+    _id: ObjectId("63772345ff7e2921cf026644"),
+    name: 'lohi',
+    phoneno: 94844434449
+  },
+  {
+    _id: ObjectId("6377590d474fb3361363ad27"),
+    name: 'Kavya',
+    Phoneno: 94838382
+  },
+  {
+    _id: ObjectId("6377593b474fb3361363ad29"),
+    name: 'karthik',
+    Phoneno: 943435234382
+  }
+]
